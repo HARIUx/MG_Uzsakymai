@@ -1,3 +1,4 @@
+# Bibliotekos
 import dbf
 import time
 import json
@@ -13,11 +14,12 @@ from datetime import datetime
 from PySide2.QtWidgets import *
 import win32com.client as comclt
 
-
+# config.ini failo parseris
 config = configparser.ConfigParser()
 with open('config.ini') as fh:
     config.read_file(fh)
-
+    
+# kintamieji priskiriami naudojant config.ini failo parseri
 fps = int(config.get('DEFAULT','fps').strip('\"'))
 updateEvery = int(config.get('DEFAULT','updateEvery').strip('\"'))
 afternoonHour = int(config.get('DEFAULT','afternoonHour').strip('\"'))
@@ -26,9 +28,7 @@ fileName = str(config.get('DEFAULT','fileName').strip('\"'))
 actionLoop = json.loads(config.get('DEFAULT','actionLoop'))
 wsh = comclt.Dispatch("WScript.Shell")
 
-
-
-
+# paleciu kryptys / lentelių spalvos
 pallets = {'afternoon': {0: {0: ['11','21'   ,True ,'12.21    '], 1: ['13','26'   ,True ,'13.26    '], 2: ['  ','  '   ,True ,'         ']},
                          1: {0: ['11','20'   ,True ,'11.20    '], 1: ['13','25'   ,True ,'13.25    '], 2: ['12','24'   ,True ,'12.24    ']},
                          2: {0: ['08','17'   ,True ,'08.17    '], 1: ['03','13'   ,True ,'03.13    '], 2: ['12','23'   ,True ,'12.23    ']},
@@ -55,6 +55,8 @@ pallets = {'afternoon': {0: {0: ['11','21'   ,True ,'12.21    '], 1: ['13','26' 
                          'green': {'table': ['#002000', '#00c000'], 'label': ['#004000', '#008000']},
                          'yellow':{'table': ['#202000', '#c0c000'], 'label': ['#404000', '#808000']},
                          'blue':  {'table': ['#002020', '#00c0c0'], 'label': ['#004040', '#008080']}}}
+
+# Visu nesurinktu uzsakymu sumos
 MGuncolected = {'all': {'all': [0,0,0,2],
                      'orders': [0,0,0,2],
                    'e_orders': [0,0,0,2]},
@@ -64,6 +66,7 @@ MGuncolected = {'all': {'all': [0,0,0,2],
           'afternoon': {'all': [0,0,0,2],
                      'orders': [0,0,0,2],
                    'e_orders': [0,0,0,2]}}
+
 class UI_window(QMainWindow):
     global MGuncolected
     def __init__(self):
@@ -74,7 +77,8 @@ class UI_window(QMainWindow):
         ## SHOW ==> MAIN WINDOW
         ########################################################################
         self.show()
-
+        
+# user iterface (81 - 3411 eilute)
 class UI_mgOrders(object):
     global MGuncolected
     def setupUi(self, mgOrders):
@@ -3430,7 +3434,7 @@ if __name__ == '__main__':
         since_update = (current_dateTime - update_dateTime).seconds
         until_update = updateEvery - since_update
 
-        # UPDATE
+        # atnaujinimas
         if (since_update > updateEvery):
             dbf_data = openDBF()
             
@@ -3736,11 +3740,8 @@ if __name__ == '__main__':
             UI_update(ui, f'frame_info_lcdNumber_timeSince_0' , since_update, '#101010', '#c0c000')
             UI_update(ui, f'frame_info_lcdNumber_timeUntil_0' , until_update, '#101010', '#c0c000')
     
-    
     def frame_date_UPDATE():
         return True
-    
-    
     
     def UI_update(ui, variableName, variableValue, background_color='', color=''):
         if eval(f'type(ui.{variableName})') == QLabel:
@@ -3804,7 +3805,8 @@ if __name__ == '__main__':
         elif MGuncolected[counter_type][counter_type2][3] == 0:
             UI_update(ui, f'frame_{counter_type}UncollectedOrders_indicatorUp_{element}', '▲', '', '#ff0000')
             UI_update(ui, f'frame_{counter_type}UncollectedOrders_indicatorDown_{element}', '▼', '', color_bg)
-            
+     
+    # .dbf failo parseris
     def openDBF():
         if appName == "":
             for action in actionLoop:
