@@ -14,4 +14,8 @@ Veikimo principas:
 4. Programa laukia iki kito intervalo pradžios (po to grįžta į 1. etapą)
 
 Programos išvaizda:
-![image (1)](https://user-images.githubusercontent.com/77055205/215567599-71db3cd3-1998-40ff-b418-be662abcc5d9.png)
+![MG_uzsakymai](https://user-images.githubusercontent.com/77055205/215567599-71db3cd3-1998-40ff-b418-be662abcc5d9.png)
+
+
+https://user-images.githubusercontent.com/77055205/216558005-d1689015-d715-4009-b731-7a7a2f109c28.mp4
+
