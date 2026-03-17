@@ -16,6 +16,6 @@ Veikimo principas:
 Programos išvaizda:
 ![MG_uzsakymai](https://user-images.githubusercontent.com/77055205/215567599-71db3cd3-1998-40ff-b418-be662abcc5d9.png)
 
-
 https://user-images.githubusercontent.com/77055205/216558005-d1689015-d715-4009-b731-7a7a2f109c28.mp4
 
+https://limewire.com/d/wE8yg#5YsDaRa0nd
